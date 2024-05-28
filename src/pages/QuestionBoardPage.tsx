@@ -16,7 +16,16 @@ const questions: Question[] = [
     },
     {
         id: 2,
-        text: 'Question 2 text...',
+        text: 'Qual a cor do cavalo branco de napoleão bonaparte?',
+        alternatives: [
+            { key: 'A', text: 'Text of Option A', isCorrect: true },
+            { key: 'B', text: 'Text of Option B', isCorrect: false },
+            { key: 'C', text: 'Text of Option C', isCorrect: false },
+        ],
+    },
+    {
+        id: 14,
+        text: 'Qual a cor do cavalo branco de napoleão bonaparte?',
         alternatives: [
             { key: 'A', text: 'Text of Option A', isCorrect: true },
             { key: 'B', text: 'Text of Option B', isCorrect: false },
@@ -49,7 +58,7 @@ const QuestionBoardPage: React.FC = () => {
         <Flex height="100vh" width="100vw" justifyContent="center" alignItems="center">
             <VStack spacing={6} align="center">
                 <Heading mb={4} textAlign="center" color="teal.500">
-                    Escolha uma Pergunta
+                    Escolha um número e click nele
                 </Heading>
                 <Box>
                     <QuestionBoard onSquareClick={handleSquareClick} completedQuestions={completedQuestions} />
@@ -58,7 +67,7 @@ const QuestionBoardPage: React.FC = () => {
                     completedQuestions.length > 0 && (
                         <Box mt={4} textAlign="center">
                             <Text fontSize="xl" color="teal.600">
-                                Questions Respondidas: {completedQuestions.join(', ')}
+                                Respondidas: {completedQuestions.join(', ')}
                             </Text>
                         </Box>
                     )

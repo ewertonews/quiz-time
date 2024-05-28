@@ -1,5 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Button, VStack, Text, Progress, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, HStack } from '@chakra-ui/react';
+import {
+    Button,
+    VStack,
+    Text,
+    Progress,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalCloseButton,
+    HStack,
+    Flex,
+    Box
+} from '@chakra-ui/react';
 import { Question } from '../types';
 
 interface QuestionModalProps {
@@ -17,6 +31,7 @@ const QuestionModal: React.FC<QuestionModalProps> = ({ isOpen, onClose, question
     const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
     const [hideAlternatives, setHideAlternatives] = useState<boolean>(false);
     const [timer, setTimer] = useState<number>();
+    const [feedbackColor, setFeedbackColor] = useState<string>('black');
 
     useEffect(() => {
         setSelectedAnswer(null);
@@ -39,23 +54,32 @@ const QuestionModal: React.FC<QuestionModalProps> = ({ isOpen, onClose, question
     }, [timeLeft]);
 
     const handleTimeout = () => {
+        if (timer) {
+            clearTimeout(timer);
+        }
         setHideAlternatives(true);
-        setFeedback("Time's up!");
+        setFeedbackColor('red')
+        setFeedback("Tempo esgotado!");
         setTimeout(() => {
             onClose();
         }, 2000);
     };
 
     const handleAnswerClick = (isCorrect: boolean) => {
+        if (timer) {
+            clearTimeout(timer);
+        }
         setHideAlternatives(true);
-        clearTimeout(timer);
+
         if (isCorrect) {
-            setFeedback('Correct!');
+            setFeedbackColor('green')
+            setFeedback('Resposta correta! \\o/');
             setTimeout(() => {
                 onAnswer(true);
-            }, 2000);
+            }, 2500);
         } else {
-            setFeedback('Wrong answer!');
+            setFeedbackColor('red')
+            setFeedback('Errrrrrrrrrrrrrrrrou!');
             setTimeout(() => {
                 onAnswer(false);
             }, 2000);
@@ -69,27 +93,45 @@ const QuestionModal: React.FC<QuestionModalProps> = ({ isOpen, onClose, question
                 <ModalHeader>Pergunta {question.id}:</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    <VStack spacing={4}>
-                        <Text fontSize="50" marginBottom={50}>{question.text}</Text>
-                        <VStack spacing={2} width="100%" visibility={hideAlternatives ? 'hidden' : 'visible'}>
-                            {question.alternatives.map((alt, index) => (
-                                <HStack key={index} width="100%">
-                                    <Button
-                                        fontSize={'50'}
-                                        width={'100px'}
-                                        height={'70px'}
-                                        onClick={() => handleAnswerClick(alt.isCorrect)}
-                                        colorScheme={selectedAnswer === alt.key ? (alt.isCorrect ? 'green' : 'red') : 'blue'}
-                                    >
-                                        {alt.key}
-                                    </Button>
-                                    <Text fontSize="3xl">{alt.text}</Text>
-                                </HStack>
-                            ))}
+                    <Flex height="70vh" width="95vw" justifyContent="center" alignItems="center">
+                        <VStack spacing={4}>
+                            {feedback &&
+                                <Box color={feedbackColor}>
+                                    <Text fontSize="80">{feedback}</Text>
+                                </Box>}
+                            <VStack spacing={2} width="100%" visibility={hideAlternatives ? 'hidden' : 'visible'}>
+                                <Text fontSize="45" marginBottom={50} color="#BA55D3">{question.text}</Text>
+                                {question.alternatives.map((alt, index) => (
+                                    <HStack key={index} width="100%">
+                                        <Button
+                                            backgroundColor="#00FA9A"
+                                            border="4px"
+                                            borderColor="#BA55D3"
+                                            color="#BA55D3"
+                                            fontSize={'50'}
+                                            width={'100px'}
+                                            height={'70px'}
+                                            onClick={() => handleAnswerClick(alt.isCorrect)}
+                                            colorScheme={selectedAnswer === alt.key ? (alt.isCorrect ? 'green' : 'red') : 'blue'}
+                                        >
+                                            {alt.key}
+                                        </Button>
+                                        <Text fontSize="4xl" color={"#00cc7e"}>{alt.text}</Text>
+                                    </HStack>
+                                ))}
+                            </VStack>
+                            {timeLeft > 0 && !hideAlternatives && <Progress
+                                value={(timeLeft / TOTAL_TIME) * 100}
+                                size="md"
+                                width="100%"
+                                sx={{
+                                    '& > div:first-of-type': {
+                                        backgroundColor: '#BA55D3', // Custom color code
+                                    },
+                                }}
+                            />}
                         </VStack>
-                        <Progress value={(timeLeft / TOTAL_TIME) * 100} size="sm" colorScheme="blue" width="100%" />
-                        {feedback && <Text fontSize="lg">{feedback}</Text>}
-                    </VStack>
+                    </Flex>
                 </ModalBody>
             </ModalContent>
         </Modal>
