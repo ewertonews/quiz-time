@@ -1,68 +1,70 @@
-[
-    {
-        "id": 1,
-        "text": "Em que ano Ewerton e Beth chagaram em Blumenau?",
-        "time": 7,
-        "alternatives": [
-            {
-                "key": "A",
-                "text": "2021",
-                "isCorrect": false
-            },
-            {
-                "key": "B",
-                "text": "2022",
-                "isCorrect": false
-            },
-            {
-                "key": "C",
-                "text": "2020",
-                "isCorrect": true
-            }
-        ]
-    },
-    {
-        "id": 2,
-        "text": "Qual a principal linguagem de progração de Ewerton?",
-        "time": 10,
-        "alternatives": [
-            {
-                "key": "A",
-                "text": "C",
-                "isCorrect": false
-            },
-            {
-                "key": "B",
-                "text": "C++",
-                "isCorrect": false
-            },
-            {
-                "key": "C",
-                "text": "C  Sharp ",
-                "isCorrect": true
-            }
-        ]
-    },
-    {
-        "id": 3,
-        "text": "Qual a comida favorita de Ewerton e Beth?",
-        "time": 5,
-        "alternatives": [
-            {
-                "key": "A",
-                "text": "Sushi",
-                "isCorrect": true
-            },
-            {
-                "key": "B",
-                "text": "Cuscuz",
-                "isCorrect": false
-            },
-            {
-                "key": "C",
-                "text": "Massas",
-                "isCorrect": false
-            }
-        ]
-    }
-]
+{
+    "questions": [
+        {
+            "id": 1,
+            "text": "Em que ano Ewerton e Beth chagaram em Blumenau?",
+            "time": 7,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "2021",
+                    "isCorrect": false
+                },
+                {
+                    "key": "B",
+                    "text": "2022",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "2020",
+                    "isCorrect": true
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "text": "Qual a principal linguagem de progração de Ewerton?",
+            "time": 10,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "C",
+                    "isCorrect": false
+                },
+                {
+                    "key": "B",
+                    "text": "C++",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "C  Sharp ",
+                    "isCorrect": true
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "text": "Qual a comida favorita de Ewerton e Beth?",
+            "time": 5,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Sushi",
+                    "isCorrect": true
+                },
+                {
+                    "key": "B",
+                    "text": "Cuscuz",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "Massas",
+                    "isCorrect": false
+                }
+            ]
+        }
+    ]
+}

@@ -5,29 +5,36 @@ import QuestionModal from '../components/QuestionModal';
 import { Question } from '../types';
 import SecretCodeModal from '../components/SecretCodeModal';
 
-const questions: Question[] = [
-    {
-        id: 1,
-        text: 'Em que ano Ewerton e Beth chagaram em Blumenau?',
-        time: 10,
-        alternatives: [
-            { key: 'A', text: '2021', isCorrect: false },
-            { key: 'B', text: '2022', isCorrect: false },
-            { key: 'C', text: '2020', isCorrect: true },
-        ],
-    },
-    // Add more questions as needed
-];
 
 const QuestionBoardPage: React.FC = () => {
+    const [questions, setQuestions] = useState<Question[]>([]);
     const [selectedNumber, setSelectedNumber] = useState<number | null>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [completedQuestions, setCompletedQuestions] = useState<number[]>([]);
+    const [totalQuestions, setTotalQuestions] = useState<number>(0);
     const [clickCount, setClickCount] = useState<number>(0);
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     useEffect(() => {
-        if (completedQuestions.length === questions.length) {
+        console.log("useEffect [] called");
+        const savedCompletedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '[]');
+        setCompletedQuestions(savedCompletedQuestions);
+
+        fetch('/src/questions.json')
+            .then(response => response.json())
+            .then(data => {
+                setTotalQuestions(data.questions.length);
+                const filteredQuestions = data.questions.filter(
+                    (question: Question) => !savedCompletedQuestions.includes(question.id)
+                );
+                setQuestions(filteredQuestions);
+                console.log("finished setting questions");
+            })
+            .catch(error => console.error('Error loading questions:', error));
+    }, []);
+
+    useEffect(() => {
+        if (completedQuestions.length === totalQuestions) {
             const handleMouseClick = () => {
                 setClickCount((prev) => prev + 1);
             };
@@ -41,7 +48,7 @@ const QuestionBoardPage: React.FC = () => {
                 window.removeEventListener('click', handleMouseClick);
             };
         }
-    }, [completedQuestions, clickCount, onOpen]);
+    }, [completedQuestions, clickCount, onOpen, questions.length, totalQuestions]);
 
     const handleSquareClick = (number: number) => {
         setSelectedNumber(number);
@@ -51,7 +58,10 @@ const QuestionBoardPage: React.FC = () => {
     const handleCloseModal = (wasCorrect: boolean) => {
         setIsModalOpen(false);
         if (wasCorrect && selectedNumber !== null) {
-            setCompletedQuestions((prev) => [...prev, selectedNumber].sort((a, b) => a - b));
+            const updatedCompletedQuestions = [...completedQuestions, selectedNumber]
+            setCompletedQuestions(updatedCompletedQuestions.sort((a, b) => a - b));
+            //setCompletedQuestions((prev) => [...prev, selectedNumber].sort((a, b) => a - b));
+            localStorage.setItem('completedQuestions', JSON.stringify(updatedCompletedQuestions));
         }
     };
 
