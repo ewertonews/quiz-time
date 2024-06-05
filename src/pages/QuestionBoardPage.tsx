@@ -16,7 +16,6 @@ const QuestionBoardPage: React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     useEffect(() => {
-        console.log("useEffect [] called");
         const savedCompletedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '[]');
         setCompletedQuestions(savedCompletedQuestions);
 
@@ -28,7 +27,6 @@ const QuestionBoardPage: React.FC = () => {
                     (question: Question) => !savedCompletedQuestions.includes(question.id)
                 );
                 setQuestions(filteredQuestions);
-                console.log("finished setting questions");
             })
             .catch(error => console.error('Error loading questions:', error));
     }, []);
@@ -71,7 +69,7 @@ const QuestionBoardPage: React.FC = () => {
         <Flex height="100vh" width="100vw" justifyContent="center" alignItems="center">
             <VStack spacing={6} align="center">
                 <Heading mb={4} textAlign="center" color="teal.500">
-                    Escolha um número
+                    Escolha um Número
                 </Heading>
                 <Box>
                     <QuestionBoard onSquareClick={handleSquareClick} completedQuestions={completedQuestions} />
