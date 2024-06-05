@@ -7,15 +7,15 @@ interface QuestionBoardProps {
 }
 
 const QuestionBoard: React.FC<QuestionBoardProps> = ({ onSquareClick, completedQuestions }) => {
-    const grid = Array.from({ length: 25 }, (_, i) => i + 1); // 5x5 grid
+    const grid = Array.from({ length: 20 }, (_, i) => i + 1); // 5x4 grid
 
     return (
         <SimpleGrid columns={5} spacing={5}>
             {grid.map((number) => (
                 <Box
                     key={number}
-                    width="160px"
-                    height="100px"
+                    width="165px"
+                    height="112px"
                     backgroundColor="#00FA9A"
                     border="4px"
                     borderColor="#BA55D3"
