@@ -23,20 +23,18 @@ interface QuestionModalProps {
     onAnswer: (isCorrect: boolean) => void;
 }
 
-const TOTAL_TIME = 5; // Define the total time for the timer
-
 const QuestionModal: React.FC<QuestionModalProps> = ({ isOpen, onClose, question, onAnswer }) => {
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [feedback, setFeedback] = useState<string | null>(null);
-    const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
+    const [timeLeft, setTimeLeft] = useState(question.time);
     const [hideAlternatives, setHideAlternatives] = useState<boolean>(false);
-    const [timer, setTimer] = useState<number>();
+    const [timer, setTimer] = useState<NodeJS.Timeout>();
     const [feedbackColor, setFeedbackColor] = useState<string>('black');
 
     useEffect(() => {
         setSelectedAnswer(null);
         setFeedback(null);
-        setTimeLeft(TOTAL_TIME);
+        setTimeLeft(question.time);
         setHideAlternatives(false);
 
         const timer = setInterval(() => {
@@ -45,12 +43,14 @@ const QuestionModal: React.FC<QuestionModalProps> = ({ isOpen, onClose, question
         setTimer(timer);
 
         return () => clearInterval(timer);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen]);
 
     useEffect(() => {
         if (timeLeft === 0) {
             handleTimeout();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timeLeft]);
 
     const handleTimeout = () => {
@@ -100,7 +100,7 @@ const QuestionModal: React.FC<QuestionModalProps> = ({ isOpen, onClose, question
                                     <Text fontSize="80">{feedback}</Text>
                                 </Box>}
                             <VStack spacing={2} width="100%" visibility={hideAlternatives ? 'hidden' : 'visible'}>
-                                <Text fontSize="45" marginBottom={50} color="#BA55D3">{question.text}</Text>
+                                <Text fontSize="60" marginBottom={50} color="#BA55D3">{question.text}</Text>
                                 {question.alternatives.map((alt, index) => (
                                     <HStack key={index} width="100%">
                                         <Button
@@ -121,12 +121,12 @@ const QuestionModal: React.FC<QuestionModalProps> = ({ isOpen, onClose, question
                                 ))}
                             </VStack>
                             {timeLeft > 0 && !hideAlternatives && <Progress
-                                value={(timeLeft / TOTAL_TIME) * 100}
+                                value={(timeLeft / question.time) * 100}
                                 size="md"
                                 width="100%"
                                 sx={{
                                     '& > div:first-of-type': {
-                                        backgroundColor: '#BA55D3', // Custom color code
+                                        backgroundColor: '#BA55D3',
                                     },
                                 }}
                             />}
