@@ -54,13 +54,16 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
     const [hintsState, setHintsState] = useState<HintsState>(initialHintsState)
 
     useEffect(() => {
-        setTimeout(() => {
-            setHintsState(prev => ({
-                ...prev,
-                btnHint1Enabled: true
-            }))
-        }, 15000)
-    }, [])
+        if (isOpen) {
+            setTimeout(() => {
+                setHintsState(prev => ({
+                    ...prev,
+                    btnHint1Enabled: true
+                }))
+            }, 15000)
+        }
+
+    }, [isOpen])
 
     useEffect(() => {
         let timer: NodeJS.Timeout;
@@ -116,7 +119,7 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
     const handleDica1click = () => {
         setHintsState(prev => ({
             ...prev,
-            hintText: 'A resposta pode estar em suas mãos (ou no seu bolso)',
+            hintText: 'A resposta pode estar em suas mãos (ou no seu bolso).',
         }))
 
         setTimeout(() => {
@@ -130,7 +133,7 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
     const handleDica2click = () => {
         setHintsState(prev => ({
             ...prev,
-            hintText: 'O cartão com o número da pergunta pode dizer algo!',
+            hintText: 'O cartão com o número da pergunta pode dizer algo.',
         }))
 
         setTimeout(() => {
@@ -144,7 +147,7 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
     const handleDica3click = () => {
         setHintsState(prev => ({
             ...prev,
-            hintText: 'LEVI OU SARA revelerá o código!',
+            hintText: 'LEVI OU SARA revelerá o código.',
         }))
     }
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
