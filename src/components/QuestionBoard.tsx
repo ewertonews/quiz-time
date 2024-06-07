@@ -14,8 +14,8 @@ const QuestionBoard: React.FC<QuestionBoardProps> = ({ onSquareClick, completedQ
             {grid.map((number) => (
                 <Box
                     key={number}
-                    width="165px"
-                    height="112px"
+                    width="190px"
+                    height="135px"
                     backgroundColor="#00FA9A"
                     border="4px"
                     borderColor="#BA55D3"

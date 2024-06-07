@@ -4,6 +4,7 @@ import QuestionBoard from '../components/QuestionBoard';
 import QuestionModal from '../components/QuestionModal';
 import { Question } from '../types';
 import SecretCodeModal from '../components/SecretCodeModal';
+import WheelOfNamesModal from '../components/WheelOfNamesModal';
 
 
 const QuestionBoardPage: React.FC = () => {
@@ -14,6 +15,21 @@ const QuestionBoardPage: React.FC = () => {
     const [totalQuestions, setTotalQuestions] = useState<number>(0);
     const [clickCount, setClickCount] = useState<number>(0);
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [isWheelModalOpen, setIsWheelModalOpen] = useState<boolean>(false);
+
+    useEffect(() => {
+        const handleKeyPress = (event: KeyboardEvent) => {
+            if (event.key === 's' || event.key === 'S') {
+                setIsWheelModalOpen(true);
+            }
+        }
+
+        window.addEventListener('keydown', handleKeyPress);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, []);
 
     useEffect(() => {
         const savedCompletedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '[]');
@@ -92,6 +108,7 @@ const QuestionBoardPage: React.FC = () => {
                     />
                 )}
                 <SecretCodeModal isOpen={isOpen} onClose={onClose} />
+                <WheelOfNamesModal isOpen={isWheelModalOpen} onClose={() => setIsWheelModalOpen(false)} />
             </VStack>
         </Flex>
     );
