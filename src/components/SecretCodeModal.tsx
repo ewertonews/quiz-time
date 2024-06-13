@@ -60,7 +60,7 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
                     ...prev,
                     btnHint1Enabled: true
                 }))
-            }, 15000)
+            }, 5000)
         }
 
     }, [isOpen])

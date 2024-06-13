@@ -2,8 +2,8 @@
     "questions": [
         {
             "id": 1,
-            "text": "Em que ano Ewerton e Beth chagaram em Blumenau?",
-            "time": 7,
+            "text": "Em que ano chegamos em Blumenau?",
+            "time": 5,
             "alternatives": [
                 {
                     "key": "A",
@@ -46,7 +46,7 @@
         },
         {
             "id": 3,
-            "text": "Qual a comida favorita de Ewerton e Beth?",
+            "text": "Qual a nossa comida favorita?",
             "time": 5,
             "alternatives": [
                 {
@@ -69,7 +69,7 @@
         {
             "id": 4,
             "text": "Qual o mês previsto para o nascimento do bebê?",
-            "time": 6,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -84,6 +84,358 @@
                 {
                     "key": "C",
                     "text": "Janeiro",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "text": "Qual a inspiração para a escolha do nome Sara?",
+            "time": 7,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Bíblia",
+                    "isCorrect": false
+                },
+                {
+                    "key": "B",
+                    "text": "Livro",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "Filme",
+                    "isCorrect": true
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "text": "De que lado da cama Beth dorme?",
+            "time": 7,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Direito",
+                    "isCorrect": false
+                },
+                {
+                    "key": "B",
+                    "text": "Esquerdo",
+                    "isCorrect": true
+                },
+                {
+                    "key": "C",
+                    "text": "No Meio",
+                    "isCorrect": true
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "text": "Qual a inspiração para a escolha do nome Levi?",
+            "time": 7,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Bíblia",
+                    "isCorrect": true
+                },
+                {
+                    "key": "B",
+                    "text": "Livro",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "Filme",
+                    "isCorrect": true
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "text": "Quantos filhos queremos ter?",
+            "time": 5,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "1",
+                    "isCorrect": false
+                },
+                {
+                    "key": "B",
+                    "text": "2",
+                    "isCorrect": true
+                },
+                {
+                    "key": "C",
+                    "text": "3",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "text": "Com quantas semanas descobrimos a gravidez?",
+            "time": 7,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "4",
+                    "isCorrect": true
+                },
+                {
+                    "key": "B",
+                    "text": "5",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "6",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "text": "Onde estávamos quando descobrimos a gravidez?",
+            "time": 8,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Em casa",
+                    "isCorrect": false
+                },
+                {
+                    "key": "B",
+                    "text": "Em Rio dos Cedros",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "Em São Paulo",
+                    "isCorrect": true
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "text": "Como nos conhecemos?",
+            "time": 7,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Na Igreja",
+                    "isCorrect": false
+                },
+                {
+                    "key": "B",
+                    "text": "No Supermercado ",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "No Facebook",
+                    "isCorrect": true
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "text": "Pra quem contamos primeiro sobre a gravidez?",
+            "time": 7,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Tai e Lukinha",
+                    "isCorrect": true
+                },
+                {
+                    "key": "B",
+                    "text": "Irmã de Beth",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "Nossa família",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "text": "Qual a categoria de seguros com a qual Beth trabalha?",
+            "time": 9,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Residencial",
+                    "isCorrect": false
+                },
+                {
+                    "key": "B",
+                    "text": "Frota",
+                    "isCorrect": true
+                },
+                {
+                    "key": "C",
+                    "text": "Automóveis",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "text": "Qual a nossa preferência de parto?",
+            "time": 6,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Normal",
+                    "isCorrect": true
+                },
+                {
+                    "key": "B",
+                    "text": "Cesária",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "Tanto faz",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "text": "Qual o nome do nosso cachorrinho?",
+            "time": 5,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Pantera",
+                    "isCorrect": false
+                },
+                {
+                    "key": "B",
+                    "text": "Bob",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "Logan",
+                    "isCorrect": true
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "text": "Qual a soma da nossa idade?",
+            "time": 10,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "60",
+                    "isCorrect": false
+                },
+                {
+                    "key": "B",
+                    "text": "65",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "68",
+                    "isCorrect": true
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "text": "Onde demos nosso primeiro beijo?",
+            "time": 8,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Praia de Boa Viagem",
+                    "isCorrect": true
+                },
+                {
+                    "key": "B",
+                    "text": "Praia de Porto de Galinhas",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "Na praça",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "text": "Quem mais cozinha em casa?",
+            "time": 7,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Beth",
+                    "isCorrect": false
+                },
+                {
+                    "key": "B",
+                    "text": "Ewerton",
+                    "isCorrect": true
+                },
+                {
+                    "key": "C",
+                    "text": "Os dois juntos",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "text": "Em que bairro moramos?",
+            "time": 5,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Velha",
+                    "isCorrect": false
+                },
+                {
+                    "key": "B",
+                    "text": "Fortaleza Alta",
+                    "isCorrect": false
+                },
+                {
+                    "key": "C",
+                    "text": "Fortaleza",
+                    "isCorrect": true
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "text": "Onde foi nossa lua de mel?",
+            "time": 8,
+            "alternatives": [
+                {
+                    "key": "A",
+                    "text": "Natal - RN",
+                    "isCorrect": false
+                },
+                {
+                    "key": "B",
+                    "text": "Gramado - RS",
+                    "isCorrect": true
+                },
+                {
+                    "key": "C",
+                    "text": "Foz do Iguaçu - PR",
                     "isCorrect": false
                 }
             ]
