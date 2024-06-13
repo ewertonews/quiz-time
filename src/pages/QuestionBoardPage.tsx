@@ -82,7 +82,18 @@ const QuestionBoardPage: React.FC = () => {
     const currentQuestion = questions.find((q) => q.id === selectedNumber);
 
     return (
-        <Flex height="100vh" width="100vw" justifyContent="center" alignItems="center">
+        <Flex
+            height="100vh"
+            width="100vw"
+            justifyContent="center"
+            alignItems="center"
+            bgGradient="repeating-linear-gradient(
+                135deg,
+                rgba(0, 250, 154, 0.15),
+                rgba(0, 250, 154, 0.15) 150px,
+                rgba(211, 115, 235, 0.15) 150px,
+                rgba(211, 115, 235, 0.15) 300px
+              )">
             <VStack spacing={6} align="center">
                 <Heading mb={4} textAlign="center" color="teal.500">
                     Escolha um Número

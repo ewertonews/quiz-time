@@ -89,18 +89,24 @@ const QuestionModal: React.FC<QuestionModalProps> = ({ isOpen, onClose, question
     return (
         <Modal isOpen={isOpen} onClose={onClose} isCentered size="full">
             <ModalOverlay />
-            <ModalContent>
+            <ModalContent bgGradient="repeating-linear-gradient(
+                45deg,
+                rgba(0, 250, 154, 0.1),
+                rgba(0, 250, 154, 0.1) 150px,
+                rgba(211, 115, 235, 0.1) 150px,
+                rgba(211, 115, 235, 0.1) 300px
+              )">
                 <ModalHeader>Pergunta {question.id}:</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
                     <Flex height="70vh" width="95vw" justifyContent="center" alignItems="center">
-                        <VStack spacing={4}>
+                        <VStack spacing={4} minWidth="70vw">
                             {feedback &&
                                 <Box color={feedbackColor}>
                                     <Text fontSize="80">{feedback}</Text>
                                 </Box>}
                             <VStack spacing={2} width="100%" visibility={hideAlternatives ? 'hidden' : 'visible'}>
-                                <Text fontSize="60" marginBottom={50} color="#BA55D3">{question.text}</Text>
+                                <Text fontSize="75" marginBottom={50} color="#BA55D3">{question.text}</Text>
                                 {question.alternatives.map((alt, index) => (
                                     <HStack key={index} width="100%">
                                         <Button
@@ -108,7 +114,7 @@ const QuestionModal: React.FC<QuestionModalProps> = ({ isOpen, onClose, question
                                             border="4px"
                                             borderColor="#BA55D3"
                                             color="#BA55D3"
-                                            fontSize={'50'}
+                                            fontSize={'55'}
                                             width={'100px'}
                                             height={'70px'}
                                             onClick={() => handleAnswerClick(alt.isCorrect)}
@@ -116,7 +122,7 @@ const QuestionModal: React.FC<QuestionModalProps> = ({ isOpen, onClose, question
                                         >
                                             {alt.key}
                                         </Button>
-                                        <Text fontSize="4xl" color={"#00cc7e"}>{alt.text}</Text>
+                                        <Text fontSize="70" color={"#00cc7e"}>{alt.text}</Text>
                                     </HStack>
                                 ))}
                             </VStack>

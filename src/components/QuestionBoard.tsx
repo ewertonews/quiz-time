@@ -10,12 +10,12 @@ const QuestionBoard: React.FC<QuestionBoardProps> = ({ onSquareClick, completedQ
     const grid = Array.from({ length: 20 }, (_, i) => i + 1); // 5x4 grid
 
     return (
-        <SimpleGrid columns={5} spacing={5}>
+        <SimpleGrid columns={5} spacing={6}>
             {grid.map((number) => (
                 <Box
                     key={number}
-                    width="190px"
-                    height="135px"
+                    width="200px"
+                    height="140px"
                     backgroundColor="#00FA9A"
                     border="4px"
                     borderColor="#BA55D3"
@@ -23,7 +23,7 @@ const QuestionBoard: React.FC<QuestionBoardProps> = ({ onSquareClick, completedQ
                     alignItems="center"
                     justifyContent="center"
                     color="#BA55D3"
-                    fontSize="70"
+                    fontSize="95"
                     fontWeight="bold"
                     cursor="pointer"
                     borderRadius="md"

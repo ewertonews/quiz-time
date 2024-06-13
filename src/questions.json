@@ -90,7 +90,7 @@
         },
         {
             "id": 5,
-            "text": "Qual a inspiração para a escolha do nome Sara?",
+            "text": "De onde veio a inspiração para a escolha do nome Sara?",
             "time": 7,
             "alternatives": [
                 {
@@ -134,7 +134,7 @@
         },
         {
             "id": 7,
-            "text": "Qual a inspiração para a escolha do nome Levi?",
+            "text": "De onde veio a inspiração para a escolha do nome Levi?",
             "time": 7,
             "alternatives": [
                 {
