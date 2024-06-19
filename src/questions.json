@@ -3,7 +3,7 @@
         {
             "id": 1,
             "text": "Em que ano chegamos em Blumenau?",
-            "time": 5,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -47,7 +47,7 @@
         {
             "id": 3,
             "text": "Qual a nossa comida favorita?",
-            "time": 5,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -91,7 +91,7 @@
         {
             "id": 5,
             "text": "De onde veio a inspiração para a escolha do nome Sara?",
-            "time": 7,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -113,7 +113,7 @@
         {
             "id": 6,
             "text": "De que lado da cama Beth dorme?",
-            "time": 7,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -135,7 +135,7 @@
         {
             "id": 7,
             "text": "De onde veio a inspiração para a escolha do nome Levi?",
-            "time": 7,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -157,7 +157,7 @@
         {
             "id": 8,
             "text": "Quantos filhos queremos ter?",
-            "time": 5,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -179,7 +179,7 @@
         {
             "id": 9,
             "text": "Com quantas semanas descobrimos a gravidez?",
-            "time": 7,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -201,7 +201,7 @@
         {
             "id": 10,
             "text": "Onde estávamos quando descobrimos a gravidez?",
-            "time": 8,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -223,7 +223,7 @@
         {
             "id": 11,
             "text": "Como nos conhecemos?",
-            "time": 7,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -245,7 +245,7 @@
         {
             "id": 12,
             "text": "Pra quem contamos primeiro sobre a gravidez?",
-            "time": 7,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -267,7 +267,7 @@
         {
             "id": 13,
             "text": "Qual a categoria de seguros com a qual Beth trabalha?",
-            "time": 9,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -289,7 +289,7 @@
         {
             "id": 14,
             "text": "Qual a nossa preferência de parto?",
-            "time": 6,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -311,7 +311,7 @@
         {
             "id": 15,
             "text": "Qual o nome do nosso cachorrinho?",
-            "time": 5,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -355,7 +355,7 @@
         {
             "id": 17,
             "text": "Onde demos nosso primeiro beijo?",
-            "time": 8,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -377,7 +377,7 @@
         {
             "id": 18,
             "text": "Quem mais cozinha em casa?",
-            "time": 7,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -399,7 +399,7 @@
         {
             "id": 19,
             "text": "Em que bairro moramos?",
-            "time": 5,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
@@ -421,7 +421,7 @@
         {
             "id": 20,
             "text": "Onde foi nossa lua de mel?",
-            "time": 8,
+            "time": 10,
             "alternatives": [
                 {
                     "key": "A",
