@@ -5,6 +5,7 @@ import QuestionModal from '../components/QuestionModal';
 import { Question } from '../types';
 import SecretCodeModal from '../components/SecretCodeModal';
 import WheelOfNamesModal from '../components/WheelOfNamesModal';
+import RulesModal from '../components/RulesModal';
 
 
 const QuestionBoardPage: React.FC = () => {
@@ -16,20 +17,23 @@ const QuestionBoardPage: React.FC = () => {
     const [clickCount, setClickCount] = useState<number>(0);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [isWheelModalOpen, setIsWheelModalOpen] = useState<boolean>(false);
+    const { isOpen: isRulesModalOpen, onOpen: onOpenRules, onClose: onCloseRules } = useDisclosure();
 
     useEffect(() => {
         const handleKeyPress = (event: KeyboardEvent) => {
             if (event.key === 's' || event.key === 'S') {
                 setIsWheelModalOpen(true);
+            } else if (event.key === 'r' || event.key === 'R') {
+                onOpenRules();
             }
-        }
+        };
 
         window.addEventListener('keydown', handleKeyPress);
 
         return () => {
             window.removeEventListener('keydown', handleKeyPress);
         };
-    }, []);
+    }, [onOpenRules]);
 
     useEffect(() => {
         const savedCompletedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '[]');
@@ -120,6 +124,7 @@ const QuestionBoardPage: React.FC = () => {
                 )}
                 <SecretCodeModal isOpen={isOpen} onClose={onClose} />
                 <WheelOfNamesModal isOpen={isWheelModalOpen} onClose={() => setIsWheelModalOpen(false)} />
+                <RulesModal isOpen={isRulesModalOpen} onClose={onCloseRules} />
             </VStack>
         </Flex>
     );
