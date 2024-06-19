@@ -160,46 +160,56 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
         <Modal isOpen={isOpen} onClose={onClose} isCentered size="3xl">
             <ModalOverlay />
             <ModalContent h="75vh">
-                <ModalHeader color="red">Erro! A roda não conseguiu efetuar a revelação. Necessário digitar o código secreto.</ModalHeader>
+                <ModalHeader></ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    <Flex height="90%" justifyContent="center" alignItems="center">
-                        {!showRoulette ? (
-                            currentPhrase ? (
-                                <Flex justifyContent="center" alignItems="center" height="100%">
-                                    <Text fontSize="3xl">{currentPhrase}{dots}</Text>
-                                </Flex>
+                    <VStack spacing={1}>
+                        <Box mb={150} mt={0} justifyContent={"center"} textAlign={"center"}>
+                            <Text
+                                color="red"
+                                fontSize={30}
+                            >
+                                Erro! A roda não conseguiu efetuar a revelação. Necessário digitar o código secreto.
+                            </Text>
+                        </Box>
+                        <Flex height="90%" justifyContent="center" alignItems="center">
+                            {!showRoulette ? (
+                                currentPhrase ? (
+                                    <Flex justifyContent="center" alignItems="center" height="100%">
+                                        <Text fontSize="3xl">{currentPhrase}{dots}</Text>
+                                    </Flex>
+                                ) : (
+                                    <VStack spacing={4}>
+                                        <HStack>
+                                            <Input
+                                                type="number"
+                                                autoComplete="off"
+                                                value={code}
+                                                onChange={handleCodeChange}
+                                                placeholder="Digite o código secreto"
+                                                size="lg" width={'30vw'}
+                                                onKeyDown={handleKeyDown}
+                                            />
+                                            <Button onClick={handleSubmit} colorScheme="teal" size="lg">OK</Button>
+                                        </HStack>
+                                        <Box height={'1vh'}>{wrongCode && <Text color="red">Código incorreto</Text>}</Box>
+                                        <HStack spacing={4} marginTop={10}>
+                                            <Button colorScheme='yellow' size={'lg'} onClick={handleDica1click} isDisabled={!hintsState.btnHint1Enabled}>Dica 1</Button>
+                                            <Button colorScheme='yellow' size={'lg'} onClick={handleDica2click} isDisabled={!hintsState.btnHint2Enabled}>Dica 2</Button>
+                                            <Button colorScheme='yellow' size={'lg'} onClick={handleDica3click} isDisabled={!hintsState.btnHint3Enabled}>Dica 3</Button>
+                                        </HStack>
+                                        <Box height={'10vh'} mt='30px'>
+                                            <Text fontSize={'35'}>{hintsState.hintText}</Text>
+                                        </Box>
+                                    </VStack>
+                                )
                             ) : (
-                                <VStack spacing={4}>
-                                    <HStack>
-                                        <Input
-                                            type="number"
-                                            autoComplete="off"
-                                            value={code}
-                                            onChange={handleCodeChange}
-                                            placeholder="Digite o código secreto"
-                                            size="lg" width={'30vw'}
-                                            onKeyDown={handleKeyDown}
-                                        />
-                                        <Button onClick={handleSubmit} colorScheme="teal" size="lg">OK</Button>
-                                    </HStack>
-                                    <Box height={'1vh'}>{wrongCode && <Text color="red">Código incorreto</Text>}</Box>
-                                    <HStack spacing={4} marginTop={10}>
-                                        <Button colorScheme='yellow' size={'lg'} onClick={handleDica1click} isDisabled={!hintsState.btnHint1Enabled}>Dica 1</Button>
-                                        <Button colorScheme='yellow' size={'lg'} onClick={handleDica2click} isDisabled={!hintsState.btnHint2Enabled}>Dica 2</Button>
-                                        <Button colorScheme='yellow' size={'lg'} onClick={handleDica3click} isDisabled={!hintsState.btnHint3Enabled}>Dica 3</Button>
-                                    </HStack>
-                                    <Box height={'10vh'} mt='30px'>
-                                        <Text fontSize={'3xl'}>{hintsState.hintText}</Text>
-                                    </Box>
+                                <VStack>
+                                    <Image h={410} src="src\assets\Rouleta.png" alt="Roulette with number 9" />
                                 </VStack>
-                            )
-                        ) : (
-                            <VStack>
-                                <Image h={410} src="src\assets\Rouleta.png" alt="Roulette with number 9" />
-                            </VStack>
-                        )}
-                    </Flex>
+                            )}
+                        </Flex>
+                    </VStack>
                 </ModalBody>
             </ModalContent>
         </Modal>

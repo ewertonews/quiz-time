@@ -23,6 +23,7 @@ interface QuestionModalProps {
     onAnswer: (isCorrect: boolean) => void;
 }
 
+
 const QuestionModal: React.FC<QuestionModalProps> = ({ isOpen, onClose, question, onAnswer }) => {
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [feedback, setFeedback] = useState<string | null>(null);
