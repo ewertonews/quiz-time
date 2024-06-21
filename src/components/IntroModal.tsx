@@ -23,10 +23,10 @@ const IntroModal: React.FC<IntroModalProps> = ({ isOpen, onClose }) => {
                 rgba(0, 250, 154, 0.1) 150px,
                 rgba(211, 115, 235, 0.1) 150px,
                 rgba(211, 115, 235, 0.1) 300px
-              )" maxHeight="unset" overflow="unset">
-                <ModalBody p={0}>
-                    <Flex justifyContent={"center"} maxHeight="unset" overflow="unset">
-                        <Image src="./../../assets/LeviOuSara.png" alt="Chá Revelação - Levi ou Sara?" objectFit="cover" width="100%" height="auto" />
+              )" height="100vh" maxHeight="100vh" overflow="hidden">
+                <ModalBody p={0} height="100vh">
+                    <Flex justifyContent="center" alignItems="center" height="100vh" width="100vw">
+                        <Image src="./../../assets/LeviOuSara.png" alt="Chá Revelação - Levi ou Sara?" objectFit="cover" width="100%" height="100%" />
                     </Flex>
                 </ModalBody>
             </ModalContent>

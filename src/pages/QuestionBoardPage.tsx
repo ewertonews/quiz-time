@@ -38,8 +38,11 @@ const QuestionBoardPage: React.FC = () => {
             } else if (event.key === 'r' || event.key === 'R') {
                 onOpenRules();
             } else if (event.key === 'x' || event.key === 'X') {
-                localStorage.clear();
-                window.location.reload();
+                const clearConfirm = confirm('Tem certeza que deseja resetar o jogo?');
+                if (clearConfirm) {
+                    localStorage.clear();
+                    window.location.reload();
+                }
             } else if (event.key === 'q' || event.key === 'Q') {
                 onOpenJigsaw();
             } else if (event.key === 'i' || event.key === 'I') {
