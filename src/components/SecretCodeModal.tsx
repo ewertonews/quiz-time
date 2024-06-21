@@ -157,14 +157,14 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} isCentered size="3xl">
+        <Modal isOpen={isOpen} onClose={onClose} isCentered size="5xl" closeOnOverlayClick={false}>
             <ModalOverlay />
             <ModalContent h="75vh">
                 <ModalHeader></ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
                     <VStack spacing={1}>
-                        <Box mb={150} mt={0} justifyContent={"center"} textAlign={"center"}>
+                        <Box mb={120} mt={0} justifyContent={"center"} textAlign={"center"}>
                             <Text
                                 color="red"
                                 fontSize={30}
@@ -176,10 +176,10 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
                             {!showRoulette ? (
                                 currentPhrase ? (
                                     <Flex justifyContent="center" alignItems="center" height="100%">
-                                        <Text fontSize="3xl">{currentPhrase}{dots}</Text>
+                                        <Text fontSize="45">{currentPhrase}{dots}</Text>
                                     </Flex>
                                 ) : (
-                                    <VStack spacing={4}>
+                                    <VStack spacing={3}>
                                         <HStack>
                                             <Input
                                                 type="number"
@@ -205,7 +205,7 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
                                 )
                             ) : (
                                 <VStack>
-                                    <Image h={410} src="src\assets\Rouleta.png" alt="Roulette with number 9" />
+                                    <Image h={530} src="./../../assets/Rouleta.png" alt="Roulette with number 9" />
                                 </VStack>
                             )}
                         </Flex>

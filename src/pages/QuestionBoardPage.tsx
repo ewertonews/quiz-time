@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Box, Heading, Text, VStack, Flex, useDisclosure } from '@chakra-ui/react';
 import QuestionBoard from '../components/QuestionBoard';
 import QuestionModal from '../components/QuestionModal';
@@ -6,6 +6,9 @@ import { Question } from '../types';
 import SecretCodeModal from '../components/SecretCodeModal';
 import WheelOfNamesModal from '../components/WheelOfNamesModal';
 import RulesModal from '../components/RulesModal';
+import VideoModal from '../components/VideoModal';
+import JigsawPuzzleModal from '../components/JigsawPuzzleModal';
+import IntroModal from '../components/IntroModal';
 
 
 const QuestionBoardPage: React.FC = () => {
@@ -15,16 +18,32 @@ const QuestionBoardPage: React.FC = () => {
     const [completedQuestions, setCompletedQuestions] = useState<number[]>([]);
     const [totalQuestions, setTotalQuestions] = useState<number>(0);
     const [clickCount, setClickCount] = useState<number>(0);
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const [isWheelModalOpen, setIsWheelModalOpen] = useState<boolean>(false);
+    const { isOpen: isSecretCodeModalOpen, onOpen: openSecretCodeModal, onClose: onCloseSecretCode } = useDisclosure();
+    const { isOpen: isWheelModalOpen, onOpen: openWheelModalOpen, onClose: onCloseWheel } = useDisclosure();
     const { isOpen: isRulesModalOpen, onOpen: onOpenRules, onClose: onCloseRules } = useDisclosure();
+    const { isOpen: isVideoModalOpen, onOpen: onOpenVideo, onClose: onCloseVideo } = useDisclosure();
+    const { isOpen: isJigsawModalOpen, onOpen: onOpenJigsaw, onClose: onCloseJigsaw } = useDisclosure();
+    const { isOpen: isIntroModalOpen, onOpen: openIntroModal, onClose: onCloseIntro } = useDisclosure();
+
+    const handleVkeyPress = useCallback((event: KeyboardEvent) => {
+        if (event.key === 'v' || event.key === 'V') {
+            onOpenVideo();
+        }
+    }, [onOpenVideo]);
 
     useEffect(() => {
         const handleKeyPress = (event: KeyboardEvent) => {
             if (event.key === 's' || event.key === 'S') {
-                setIsWheelModalOpen(true);
+                openWheelModalOpen();
             } else if (event.key === 'r' || event.key === 'R') {
                 onOpenRules();
+            } else if (event.key === 'x' || event.key === 'X') {
+                localStorage.clear();
+                window.location.reload();
+            } else if (event.key === 'q' || event.key === 'Q') {
+                onOpenJigsaw();
+            } else if (event.key === 'i' || event.key === 'I') {
+                openIntroModal();
             }
         };
 
@@ -33,7 +52,14 @@ const QuestionBoardPage: React.FC = () => {
         return () => {
             window.removeEventListener('keydown', handleKeyPress);
         };
-    }, [onOpenRules]);
+    }, [handleVkeyPress, onOpenJigsaw, onOpenRules, openIntroModal, openWheelModalOpen]);
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleVkeyPress);
+        return () => {
+            window.removeEventListener('keydown', handleVkeyPress);
+        };
+    }, [handleVkeyPress, isRulesModalOpen, isVideoModalOpen, onOpenVideo]);
 
     useEffect(() => {
         const savedCompletedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '[]');
@@ -58,15 +84,17 @@ const QuestionBoardPage: React.FC = () => {
             };
 
             window.addEventListener('click', handleMouseClick);
+
             if (clickCount >= 3) {
-                onOpen();
+                window.removeEventListener('keydown', handleVkeyPress);
+                openSecretCodeModal();
             }
 
             return () => {
                 window.removeEventListener('click', handleMouseClick);
             };
         }
-    }, [completedQuestions, clickCount, onOpen, questions.length, totalQuestions]);
+    }, [completedQuestions, clickCount, openSecretCodeModal, questions.length, totalQuestions, handleVkeyPress]);
 
     const handleSquareClick = (number: number) => {
         setSelectedNumber(number);
@@ -122,9 +150,12 @@ const QuestionBoardPage: React.FC = () => {
                         onAnswer={(isCorrect: boolean) => handleCloseModal(isCorrect)}
                     />
                 )}
-                <SecretCodeModal isOpen={isOpen} onClose={onClose} />
-                <WheelOfNamesModal isOpen={isWheelModalOpen} onClose={() => setIsWheelModalOpen(false)} />
+                <SecretCodeModal isOpen={isSecretCodeModalOpen} onClose={onCloseSecretCode} />
+                <WheelOfNamesModal isOpen={isWheelModalOpen} onClose={onCloseWheel} />
                 <RulesModal isOpen={isRulesModalOpen} onClose={onCloseRules} />
+                <VideoModal isOpen={isVideoModalOpen} onClose={onCloseVideo} />
+                <JigsawPuzzleModal isOpen={isJigsawModalOpen} onClose={onCloseJigsaw} />
+                <IntroModal isOpen={isIntroModalOpen} onClose={onCloseIntro} />
             </VStack>
         </Flex>
     );
