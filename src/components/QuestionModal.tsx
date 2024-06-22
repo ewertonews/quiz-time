@@ -104,7 +104,7 @@ const QuestionModal: React.FC<QuestionModalProps> = ({ isOpen, onClose, question
                         <VStack spacing={4} minWidth="70vw">
                             {feedback &&
                                 <Box color={feedbackColor}>
-                                    <Text fontSize="80">{feedback}</Text>
+                                    <Text fontSize="80" mt={'550'}>{feedback}</Text>
                                 </Box>}
                             <VStack spacing={2} width="100%" visibility={hideAlternatives ? 'hidden' : 'visible'}>
                                 <Text fontSize="75" marginBottom={50} color="#BA55D3">{question.text}</Text>

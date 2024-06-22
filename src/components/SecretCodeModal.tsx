@@ -60,7 +60,7 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
                     ...prev,
                     btnHint1Enabled: true
                 }))
-            }, 5000)
+            }, 1000)
         }
 
     }, [isOpen])
@@ -127,7 +127,7 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
                 ...prev,
                 btnHint2Enabled: true
             }))
-        }, 30000)
+        }, 2000)
     }
 
     const handleDica2click = () => {
@@ -141,13 +141,13 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
                 ...prev,
                 btnHint3Enabled: true
             }))
-        }, 40000)
+        }, 3000)
     }
 
     const handleDica3click = () => {
         setHintsState(prev => ({
             ...prev,
-            hintText: 'LEVI OU SARA revelerá o código.',
+            hintText: 'LEVI OU SARA revelará o código.',
         }))
     }
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -157,7 +157,7 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} isCentered size="5xl" closeOnOverlayClick={false}>
+        <Modal isOpen={isOpen} onClose={onClose} isCentered size="full" closeOnOverlayClick={false}>
             <ModalOverlay />
             <ModalContent h="75vh">
                 <ModalHeader></ModalHeader>
@@ -167,7 +167,7 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
                         <Box mb={120} mt={0} justifyContent={"center"} textAlign={"center"}>
                             <Text
                                 color="red"
-                                fontSize={30}
+                                fontSize={70}
                             >
                                 Erro! A roda não conseguiu efetuar a revelação. Necessário digitar o código secreto.
                             </Text>
@@ -176,30 +176,31 @@ const SecretCodeModal: React.FC<SecretCodeModalProps> = ({ isOpen, onClose }) =>
                             {!showRoulette ? (
                                 currentPhrase ? (
                                     <Flex justifyContent="center" alignItems="center" height="100%">
-                                        <Text fontSize="45">{currentPhrase}{dots}</Text>
+                                        <Text fontSize="50">{currentPhrase}{dots}</Text>
                                     </Flex>
                                 ) : (
                                     <VStack spacing={3}>
                                         <HStack>
                                             <Input
+                                                fontSize={40}
                                                 type="number"
                                                 autoComplete="off"
                                                 value={code}
                                                 onChange={handleCodeChange}
                                                 placeholder="Digite o código secreto"
-                                                size="lg" width={'30vw'}
+                                                size="lg" height={'59'} width={'39vw'}
                                                 onKeyDown={handleKeyDown}
                                             />
-                                            <Button onClick={handleSubmit} colorScheme="teal" size="lg">OK</Button>
+                                            <Button onClick={handleSubmit} colorScheme="teal" size="lg" height={'59'} fontSize={35}>OK</Button>
                                         </HStack>
                                         <Box height={'1vh'}>{wrongCode && <Text color="red">Código incorreto</Text>}</Box>
                                         <HStack spacing={4} marginTop={10}>
-                                            <Button colorScheme='yellow' size={'lg'} onClick={handleDica1click} isDisabled={!hintsState.btnHint1Enabled}>Dica 1</Button>
-                                            <Button colorScheme='yellow' size={'lg'} onClick={handleDica2click} isDisabled={!hintsState.btnHint2Enabled}>Dica 2</Button>
-                                            <Button colorScheme='yellow' size={'lg'} onClick={handleDica3click} isDisabled={!hintsState.btnHint3Enabled}>Dica 3</Button>
+                                            <Button colorScheme='yellow' size={'lg'} height={'59'} fontSize={35} onClick={handleDica1click} isDisabled={!hintsState.btnHint1Enabled}>Dica 1</Button>
+                                            <Button colorScheme='yellow' size={'lg'} height={'59'} fontSize={35} onClick={handleDica2click} isDisabled={!hintsState.btnHint2Enabled}>Dica 2</Button>
+                                            <Button colorScheme='yellow' size={'lg'} height={'59'} fontSize={35} onClick={handleDica3click} isDisabled={!hintsState.btnHint3Enabled}>Dica 3</Button>
                                         </HStack>
                                         <Box height={'10vh'} mt='30px'>
-                                            <Text fontSize={'35'}>{hintsState.hintText}</Text>
+                                            <Text fontSize={'60'}>{hintsState.hintText}</Text>
                                         </Box>
                                     </VStack>
                                 )
