@@ -9,7 +9,35 @@ import RulesModal from '../components/RulesModal';
 import VideoModal from '../components/VideoModal';
 import JigsawPuzzleModal from '../components/JigsawPuzzleModal';
 import IntroModal from '../components/IntroModal';
+import WheelModal from '../components/WheelModal';
 
+interface WheelTaskType {
+    text: string;
+    color: string;
+}
+
+const wheelSliceDictionary: { [key: number]: WheelTaskType } = {
+    1: { text: 'ESTOURE UM BALÃO', color: '#00FA9A' },
+    2: { text: 'COLOQUE A MÃO NA CAIXA SUPRESA', color: '#BA55D3' },
+    3: { text: 'IMITE MICHAEL JACKSON E VOLTE PRO SEU LUGAR', color: '#00FA9A' },
+    4: { text: 'ABRA UMA PORTA DO GUARDA-ROUPA', color: '#BA55D3' },
+    5: { text: 'ABRA UMA MALA', color: '#00FA9A' },
+    6: { text: 'MONTE O QUEBRA-CABEÇA', color: '#BA55D3' },
+    7: { text: 'ESTOURE UM BALÃO', color: '#00FA9A' },
+    8: { text: 'DESENROLE O ROLO DE CORES', color: '#BA55D3' },
+    9: { text: 'DISPARE UM LANÇA CONFETES', color: '#00FA9A' },
+    10: { text: 'FAÇA 120 PONTOS JOGANDO DARDOS', color: '#BA55D3' },
+    11: { text: 'COLOQUE A MÃO NA CAIXA SURPRESA', color: '#00FA9A' },
+    12: { text: 'ASSISTA UM VÍDEO SURPRESA', color: '#BA55D3' },
+    13: { text: 'DESENROLE O ROLO DE CORES', color: '#00FA9A' },
+    14: { text: 'IMITE UMA GALINHA E VOLTE PRO SEU LUGAR', color: '#BA55D3' },
+    15: { text: 'MONTE O QUEBRA-CABEÇA', color: '#00FA9A' },
+    16: { text: 'ABRA UMA MALA', color: '#BA55D3' },
+    17: { text: 'ABRA UMA PORTA DO GUARDA-ROUPA', color: '#00FA9A' },
+    18: { text: 'DIPARE UM LANÇA CONFETES', color: '#BA55D3' },
+    19: { text: 'FAÇA 100 PONTOS JOGANDO DARDOS', color: '#00FA9A' },
+    20: { text: 'ASSISTA UM VÍDEO SURPRESA', color: '#BA55D3' },
+};
 
 const QuestionBoardPage: React.FC = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -24,12 +52,20 @@ const QuestionBoardPage: React.FC = () => {
     const { isOpen: isVideoModalOpen, onOpen: onOpenVideo, onClose: onCloseVideo } = useDisclosure();
     const { isOpen: isJigsawModalOpen, onOpen: onOpenJigsaw, onClose: onCloseJigsaw } = useDisclosure();
     const { isOpen: isIntroModalOpen, onOpen: openIntroModal, onClose: onCloseIntro } = useDisclosure();
+    const { isOpen: isWheelSliceOpen, onOpen: onOpenWheelSlice, onClose: onCloseWheelSlice } = useDisclosure();
+
+    const [wheelNumber, setWheelNumber] = useState<number | null>(null);
+    const [wheelText, setWheelText] = useState<string>('');
+    const [wheelColor, setWheelColor] = useState<string>('');
+    const [typedNumber, setTypedNumber] = useState<string>('');
+
 
     const handleVkeyPress = useCallback((event: KeyboardEvent) => {
         if (event.key === 'v' || event.key === 'V') {
             onOpenVideo();
         }
     }, [onOpenVideo]);
+
 
     useEffect(() => {
         const handleKeyPress = (event: KeyboardEvent) => {
@@ -47,6 +83,8 @@ const QuestionBoardPage: React.FC = () => {
                 onOpenJigsaw();
             } else if (event.key === 'i' || event.key === 'I') {
                 openIntroModal();
+            } else if (event.key === 'z' || event.key === 'Z') {
+                openSecretCodeModal();
             }
         };
 
@@ -63,6 +101,29 @@ const QuestionBoardPage: React.FC = () => {
             window.removeEventListener('keydown', handleVkeyPress);
         };
     }, [handleVkeyPress, isRulesModalOpen, isVideoModalOpen, onOpenVideo]);
+
+    useEffect(() => {
+        const handleKeyPress = (event: KeyboardEvent) => {
+            if (event.key >= '0' && event.key <= '9') {
+                setTypedNumber(prev => (prev + event.key).slice(-2)); // Capture last two digits
+            } else if (event.key === 'Enter') {
+                const number = parseInt(typedNumber, 10);
+                if (number >= 1 && number <= 20) {
+                    setWheelNumber(number);
+                    setWheelText(wheelSliceDictionary[number].text);
+                    setWheelColor(wheelSliceDictionary[number].color);
+                    onOpenWheelSlice();
+                    setTypedNumber(''); // Reset typed number
+                }
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyPress);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [typedNumber, onOpenWheelSlice]);
 
     useEffect(() => {
         const savedCompletedQuestions = JSON.parse(localStorage.getItem('completedQuestions') || '[]');
@@ -159,6 +220,7 @@ const QuestionBoardPage: React.FC = () => {
                 <VideoModal isOpen={isVideoModalOpen} onClose={onCloseVideo} />
                 <JigsawPuzzleModal isOpen={isJigsawModalOpen} onClose={onCloseJigsaw} />
                 <IntroModal isOpen={isIntroModalOpen} onClose={onCloseIntro} />
+                <WheelModal isOpen={isWheelSliceOpen} onClose={onCloseWheelSlice} number={wheelNumber} text={wheelText} color={wheelColor} />
             </VStack>
         </Flex>
     );
